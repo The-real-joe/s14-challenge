@@ -4,20 +4,19 @@ const helpers = require('./model.js')
 
 router.get('/', (req, res, next) => {
     
-    helpers.getResourses()
+    helpers.getResources()
     .then(resources => {
         console.log(resources)
-        const cleanedResources = resources.map( resource => helpers.convertResourceBoolean(resource))
-        res.json(cleanedResources)
+        res.json(resources)
         
     })
     .catch(next)
 })
 
 router.post('/', (req, res, next) => {
-    helpers.postResource(req.body)
+    helpers.postResources(req.body)
         .then(resource => {
-            res.json(helpers.convertResourceBoolean(resource))
+            res.json(resource)
         })
         .catch(next)
 })
